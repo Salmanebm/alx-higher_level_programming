@@ -5,4 +5,4 @@ def uniq_add(my_list=[]):
     for i in my_list:
         new_list.add(i)
     res = reduce(lambda a, b: a + b, new_list)
-    return (res)
+    return(res)
