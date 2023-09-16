@@ -9,7 +9,7 @@ def roman_to_int(roman_string):
         'C': 100, 'D': 500, 'M': 1000
     }
     result = 0
-    prev_value = 0 
+    prev_value = 0
     for symbol in reversed(roman_string):
         if symbol not in roman_dict:
             return (0)
