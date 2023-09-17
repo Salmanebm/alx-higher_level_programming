@@ -1,0 +1,15 @@
+import os
+import py_compile
+
+py_file = os.getenv('PYFILE')
+
+if py_file is not None:
+    if os.path.exists(py_file):
+        base_name, ext = os.path.splitext(py_file)
+        pyc_file = base_name + 'c'
+        py_compile.compile(py_file, cfile=pyc_file)
+        print(f"Compiling {py_file}...")
+    else:
+        print(f"Error: File {py_file} not found.")
+else:
+    print("Error: Environment variable PYFILE is not set.")
