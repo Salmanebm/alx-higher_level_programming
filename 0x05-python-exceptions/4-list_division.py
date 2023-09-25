@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-def safe_print_division(a, b):
+def list_division(my_list_1, my_list_2, list_length):
     new_list = []
     for i in range(0, list_length):
         try:
