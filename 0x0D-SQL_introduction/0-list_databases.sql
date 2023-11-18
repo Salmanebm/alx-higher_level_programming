@@ -1,1 +1,2 @@
-UPDATE second_table SET score = 10 WHERE name = "Bob";
+-- Lists all databases of my MySQL server.
+SHOW DATABASES;
