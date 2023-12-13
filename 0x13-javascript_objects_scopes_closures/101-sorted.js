@@ -1,17 +1,17 @@
 #!/usr/bin/node
 const { dict } = require('./101-data');
 
+const totalist = Object.entries(dict);
+const vals = Object.values(dict);
+const valsUniq = [...new Set(vals)];
 const newDict = {};
-
-// Iterate over the keys in the original dictionary
-Object.keys(dict).forEach((userId) => {
-  const occurrences = dict[userId];
-
-  // If occurrences is not a key in the new dictionary, create an empty array
-  newDict[occurrences] = newDict[occurrences] || [];
-
-  // Push the user id to the array corresponding to the occurrences
-  newDict[occurrences].push(userId);
-});
-
-console.log('New Dictionary:', newDict);
+for (const j in valsUniq) {
+  const list = [];
+  for (const k in totalist) {
+    if (totalist[k][1] === valsUniq[j]) {
+      list.unshift(totalist[k][0]);
+    }
+  }
+  newDict[valsUniq[j]] = list;
+}
+console.log(newDict);
