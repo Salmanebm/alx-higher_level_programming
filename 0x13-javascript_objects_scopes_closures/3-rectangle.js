@@ -10,7 +10,7 @@ class Rectangle {
   isValidDimension (dimension) {
     return typeof dimension === 'number' && dimension > 0 && Number.isInteger(dimension);
   }
-  
+
   print () {
     if (this.width === 0 || this.height === 0) {
       console.log('Empty Rectangle');
