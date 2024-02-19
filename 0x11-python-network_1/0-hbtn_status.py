@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-"""
-fetch holberton /statue page
-"""
+""" A Python script that fetches https://alx-intranet.hbtn.io/status """
 
-if __name__ == '__main__':
-    import urllib.request
-    req = urllib.request.Request('https://intranet.hbtn.io/status')
-    with urllib.request.urlopen(req) as response:
-        html = response.read()
+from urllib import request
 
+
+with request.urlopen("https://alx-intranet.hbtn.io/status") as response:
+    data = response.read()
     print("Body response:")
-    print("\t- type: {}".format(html.__class__))
-    print("\t- content: {}".format(html))
-    print("\t- utf8 content: {}".format(html.decode('ascii')))
+    print(f'\t- type: {type(data)}')
+    print(f'\t- content: {data}')
+    print(f'\t- utf8 content: {data.decode("utf-8")}')
