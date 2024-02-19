@@ -1,27 +1,22 @@
 #!/usr/bin/python3
-"""
-script that lists all State objects
-from the database hbtn_0e_6_usa"""
-import sys
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
-from model_state import Base, State
+""" A script that prints the first State object from the
+database hbtn_0e_6_usa """
 
+from sqlalchemy import create_engine, text
+from sys import argv
 
-if __name__ == "__main__":
-    engine = create_engine(
-                            'mysql+mysqldb://{}:{}@localhost/{}'
-                            .format(
-                                        sys.argv[1],
-                                        sys.argv[2],
-                                        sys.argv[3]
-                                            ),
-                            pool_pre_ping=True
-                                )
-    session = Session(engine)
-    re = session.query(State).order_by(State.id).first()
-    if re is None:
-        print("Nothing")
+if __name__ == '__main__':
+    from model_state import Base, State
+
+    usr, pwd, db = argv[1:]
+
+    engine = create_engine(f"mysql+mysqldb://{usr}:{pwd}@localhost/{db}")
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT states.id, states.name FROM states"
+                                   " ORDER BY states.id LIMIT 1;"))
+        state = result.fetchone()
+
+    if state is not None:
+        print(f"{state.id}: {state.name}")
     else:
-        print("{}: {}".format(re.id, re.name))
-    session.close()
+        print("Nothing")
